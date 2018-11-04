@@ -1,5 +1,4 @@
-#CNN MODEL FOR SS PREDICTION
-#Code adapted from original by Jes Frellsen
+#Author: Sarah Amick, adapted from original by Jes Frellsen
 
 import numpy as np
 import tensorflow as tf
