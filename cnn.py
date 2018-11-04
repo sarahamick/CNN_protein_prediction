@@ -1,13 +1,13 @@
 #CNN MODEL FOR SS PREDICTION
-#Code adapted from original by Jes Frellsen, ITU
+#Code adapted from original by Jes Frellsen
 
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-#1. First we load the data:
+#1.load the data:
 
-data = np.load('/Users/sarahamick/Desktop/Life/ITU/Courses/Fall2018/Natural Language/Lectures/Lecture4/Exercises4/TensorFlow/cullpdb+profile_6133_ss3-preprocessed.npz')
+data = np.load('cullpdb+profile_6133_ss3-preprocessed.npz') #compressed binary file of the data in NumPy format
 X_train = data['X_train']
 y_train = data['y_train']
 X_validation = data['X_validation']
@@ -15,13 +15,13 @@ y_validation = data['y_validation']
 X_test = data['X_test']
 y_test = data['y_test']
 
-#2. Then we define the model/graph.
+#2. Define the model/graph.
 
-# Input and output
+# Input and output:
 X = tf.placeholder(tf.float32, [None, 700, 44], name="X")
 y = tf.placeholder(tf.float32, [None, 700, 4], name='y')
 
-#3. Define the MODEL
+# Model:
 filter_width = 11
 filter_input_size = 44
 filter_channels = 40
@@ -48,7 +48,7 @@ z3 = tf.nn.relu(a3)
 
 y_ = tf.nn.softmax(z3)
 
-# 4. Then we mask out the NoSeq
+# Mask out the NoSeq
 mask = tf.not_equal(tf.argmax(y, 2), 3)
 
 y_masked = tf.boolean_mask(y, mask)
